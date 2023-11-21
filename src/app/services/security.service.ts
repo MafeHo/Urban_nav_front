@@ -83,9 +83,24 @@ export class SecurityService {
     } else {
       let datasString = JSON.stringify(datas);
       localStorage.setItem('datas-session', datasString);
+      this.UpdateUserBehavior(datas);
       return true;
     }
   }
+
+  /**
+   * Sign out user
+   */
+  RemoveUserDataValidate() {
+    let userDatas = localStorage.getItem('datas-session');
+    let sessionDatas = localStorage.getItem('data-user');
+    if (userDatas && sessionDatas) {
+      localStorage.removeItem('datas-session');
+      localStorage.removeItem('data-user');
+    } 
+    this.UpdateUserBehavior(new UserValidateModel());
+  }
+
 
   /** user session administrate */
 
