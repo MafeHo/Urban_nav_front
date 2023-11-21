@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserModel } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { ConfigurationRoutesBackend } from 'src/config/configuration.routes.backend';
+import { UserValidateModel } from '../models/user.validate.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SecurityService {
   urlBase: string = ConfigurationRoutesBackend.urlSecurity;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.sessionValidate();
+   }
 
 
   /**
@@ -61,11 +64,48 @@ export class SecurityService {
    * @param code 
    * @returns 
    */
-  ValidateCode2fa(idUser: string, code: string): Observable<object> {
-    return this.http.post<object>(`${this.urlBase}verify-2fa-code`,{
+  ValidateCode2fa(idUser: string, code: string): Observable<UserValidateModel> {
+    return this.http.post<UserValidateModel>(`${this.urlBase}verify-2fa-code`,{
       userId: idUser,
       twofacode: code
     });
+  }
+
+  /**
+   * save user data in localstorage 
+   * @param datas validate user data
+   * @returns 
+   */
+  StoreUserDataValidate(datas: UserValidateModel): boolean {
+    let datasLS = localStorage.getItem('datas-session');
+    if (datasLS != null) {
+      return false;
+    } else {
+      let datasString = JSON.stringify(datas);
+      localStorage.setItem('datas-session', datasString);
+      return true;
+    }
+  }
+
+  /** user session administrate */
+
+  dataUserValidate = new BehaviorSubject<UserValidateModel>(new UserValidateModel());
+
+
+  GetSessionData():Observable<UserValidateModel>{
+    return this.dataUserValidate.asObservable();
+  }
+
+  sessionValidate() {
+    let ls = localStorage.getItem('datas-session');
+    if (ls) {
+      let objUser = JSON.parse(ls);
+      this.UpdateUserBehavior(objUser);
+    }
+  }
+
+  UpdateUserBehavior(datas: UserValidateModel) {
+    return this.dataUserValidate.next(datas);
   }
 
 }

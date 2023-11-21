@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserValidateModel } from 'src/app/models/user.validate.model';
 import { SecurityService } from 'src/app/services/security.service';
 
 @Component({
@@ -14,7 +16,8 @@ export class TwofaIdentificationComponent {
 
   constructor(
     private securityService: SecurityService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
     ) { 
 
     }
@@ -24,6 +27,8 @@ export class TwofaIdentificationComponent {
     if (datas != null) {
       this.idUser = datas._id!;
       this.buildForm();
+    } else {
+      this.router.navigate(['/security/identify-user']);
     }
   }
 
@@ -40,8 +45,10 @@ export class TwofaIdentificationComponent {
     } else {
       let code2fa = this.getFormGroup["code"].value;
       this.securityService.ValidateCode2fa(this.idUser, code2fa).subscribe({
-        next: (datas:object) => {
+        next: (datas:UserValidateModel) => {
           console.log(datas);
+          this.securityService.StoreUserDataValidate(datas);
+          this.router.navigate([""]);
         },
         error: (err) => {
           console.log(err);
