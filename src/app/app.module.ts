@@ -9,6 +9,7 @@ import { SidebarComponent } from './public/master-page/sidebar/sidebar.component
 import { RouteNotfoundComponent } from './public/errors/route-notfound/route-notfound.component';
 import { ServerFailureComponent } from './public/errors/server-failure/server-failure.component';
 import { HomeComponent } from './public/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HomeComponent } from './public/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

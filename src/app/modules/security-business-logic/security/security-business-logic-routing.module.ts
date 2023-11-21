@@ -4,6 +4,7 @@ import { UserIdentificationComponent } from './user-identification/user-identifi
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component';
 import { SignOutComponent } from './sign-out/sign-out.component';
+import { TwofaIdentificationComponent } from './twofa-identification/twofa-identification.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: "sign-out",
     component: SignOutComponent
+  },
+  {
+    path: "2fa",
+    component: TwofaIdentificationComponent
   }
 ];
 

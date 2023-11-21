@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
+import { UserModel } from 'src/app/models/user.model';
+import { SecurityService } from 'src/app/services/security.service';
+import { MD5 } from 'crypto-js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-identification',
@@ -12,6 +16,8 @@ export class UserIdentificationComponent {
 
   constructor(
     private fb: FormBuilder,
+    private securityService: SecurityService,
+    private router: Router
   ) { 
 
   }
@@ -31,11 +37,25 @@ export class UserIdentificationComponent {
     if (this.fGroup.invalid) {
       alert("incomplete data");
     }else {
-      alert("identifying...");
+      let userName = this.fGroup.controls['userName'].value;
+      let password = MD5(this.fGroup.controls['password'].value).toString();
+      this.securityService.UserIdentification(userName, password).subscribe({
+        next: (datas:any) => {
+          console.log(datas);
+          if (this.securityService.StoreIdentifiedUserData(datas)) {
+            this.router.navigate(['/security/2fa']);
+          }
+          this.router.navigate(['/security/2fa']);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
     }
   }
 
   get getFormGroup() {
+    //console.log(this.fGroup.controls['userName'])
     return this.fGroup.controls;
   }
 }
