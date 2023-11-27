@@ -10,4 +10,5 @@
     position:relative;
     margin-top: -40px;
     z-index: 999 !important;
+    width:50px;
 }
