@@ -47,8 +47,12 @@ export class TwofaIdentificationComponent {
       this.securityService.ValidateCode2fa(this.idUser, code2fa).subscribe({
         next: (datas:UserValidateModel) => {
           console.log(datas);
-          this.securityService.StoreUserDataValidate(datas);
-          this.router.navigate([""]);
+          if (datas.token != null && datas.token != undefined && datas.token != "") {
+            this.securityService.StoreUserDataValidate(datas);
+            this.router.navigate([""]);
+          } else {
+            alert("invalid code");
+          }
         },
         error: (err) => {
           console.log(err);
