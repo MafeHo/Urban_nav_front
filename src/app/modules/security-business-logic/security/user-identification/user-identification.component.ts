@@ -41,11 +41,15 @@ export class UserIdentificationComponent {
       let password = MD5(this.fGroup.controls['password'].value).toString();
       this.securityService.UserIdentification(userName, password).subscribe({
         next: (datas:any) => {
+          if(datas._id == null || datas._id == undefined){
+            alert("incorrect credentials or missing email validation");
+          } else {
           console.log(datas);
           if (this.securityService.StoreIdentifiedUserData(datas)) {
             this.router.navigate(['/security/2fa']);
           }
           this.router.navigate(['/security/2fa']);
+        }
         },
         error: (err) => {
           console.log(err);

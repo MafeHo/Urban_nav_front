@@ -71,6 +71,16 @@ export class SecurityService {
     });
   }
 
+  registerClient(data: any): Observable<UserModel> { 
+    return this.http.post<UserModel>(`${this.urlBase}customer-public`,data);
+  }
+
+  validateHashUser(hash: string): Observable<boolean> {
+    return this.http.post<boolean>(`${this.urlBase}validate-hash-user`,{
+      codeHash: hash
+    });
+  }
+
   /**
    * save user data in localstorage 
    * @param datas validate user data
@@ -123,4 +133,15 @@ export class SecurityService {
     return this.dataUserValidate.next(datas);
   }
 
+  sendSocket(datas: any, url: string) {
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(datas),
+      headers: {'Content-Type': 'application/json'},
+    })
+
+  }
+
 }
+
+

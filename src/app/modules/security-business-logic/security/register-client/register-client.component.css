@@ -1,0 +1,9 @@
+.container{
+    margin-top: 30px;
+}
+
+.formClient{
+    font-size: 28px;
+    font-weight: bold;
+    @extend .deep-purple, .text-accent-2;
+}

@@ -13,6 +13,8 @@ import { DeleteUserComponent } from './user/delete-user/delete-user.component';
 import { SignOutComponent } from './sign-out/sign-out.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { RegisterClientComponent } from './register-client/register-client.component';
+import { ValidationHashUserComponent } from './validation-hash-user/validation-hash-user.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { FormsModule } from '@angular/forms';
     EditUserComponent,
     ListUserComponent,
     DeleteUserComponent,
-    SignOutComponent
+    SignOutComponent,
+    RegisterClientComponent,
+    ValidationHashUserComponent
   ],
   imports: [
     CommonModule,

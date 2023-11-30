@@ -21,14 +21,14 @@
         color: white;
         font-size: 50px;
         font-weight: bold;
-        margin-top: 18%;
+        margin-top: 30%;
         margin-left: 15%;
         text-shadow: 1px 4px 4px #000000;
     }
   
   .homeOverlay-text {
     position: absolute;
-    top: 8.8%;
+    top: 11%;
     width: 50%;
     height: 620px;
     background: rgba(255, 99, 71, 0.2);
@@ -36,7 +36,15 @@
     text-align: left;
     padding-left: 30px;
     padding-right: 30px;
-    
+  }
+
+  .homeOverlay-trip {
+    position: absolute;
+    top: 16%;
+    left: 40%;
+    width: 50%;
+    height: 620px;
+    color: #fff; 
   }
 
 /* CARDS STYLE */
