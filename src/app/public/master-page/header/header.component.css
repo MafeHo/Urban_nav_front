@@ -1,7 +1,12 @@
+.navii {
+    background: #311b92 deep-purple darken-4;
+    color: #311b92 deep-purple darken-4;
+    background-color: #311b92 deep-purple darken-4;
+}
+
 .brand-logo{
     width: 220px;
     padding: 0 1.5%;
     box-shadow: 0 0 10px rgba(0,0,0,.5);
     font-weight: bold;
-    margin-left: 100px;
 }
