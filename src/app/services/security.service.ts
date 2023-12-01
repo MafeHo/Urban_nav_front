@@ -75,6 +75,10 @@ export class SecurityService {
     return this.http.post<UserModel>(`${this.urlBase}customer-public`,data);
   }
 
+  registerFile(data: any): Observable<{file: string}> { 
+    return this.http.post<{file: string}>(`${this.urlBase}upload-file-passengers`,data);
+  }
+
   validateHashUser(hash: string): Observable<boolean> {
     return this.http.post<boolean>(`${this.urlBase}validate-hash-user`,{
       codeHash: hash

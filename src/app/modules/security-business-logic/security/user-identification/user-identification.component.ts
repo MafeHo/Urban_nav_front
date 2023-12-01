@@ -5,6 +5,7 @@ import { UserModel } from 'src/app/models/user.model';
 import { SecurityService } from 'src/app/services/security.service';
 import { MD5 } from 'crypto-js';
 import { Router } from '@angular/router';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-user-identification',
@@ -12,15 +13,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-identification.component.css']
 })
 export class UserIdentificationComponent {
+  title = 'Angular14App';
+  submitted = false;
+  reCAPTCHAToken: string = "";
+  tokenVisible: boolean = true;
+
+  onSubmit() {
+      this.recaptchaV3Service.execute('importantAction').subscribe((token: string) => {
+          this.tokenVisible = true;
+          this.reCAPTCHAToken = `Token [${token}] generated`;
+      });
+  }
+
   fGroup: FormGroup = new FormGroup({});
 
   constructor(
     private fb: FormBuilder,
     private securityService: SecurityService,
-    private router: Router
-  ) { 
-
-  }
+    private router: Router,
+    private recaptchaV3Service: ReCaptchaV3Service
+  ) { }
 
   ngOnInit(){
     this.BuildForm();
@@ -32,7 +44,7 @@ export class UserIdentificationComponent {
       password: ['', [Validators.required,]],
     });
   }
-
+  
   IdentifyUser() {
     if (this.fGroup.invalid) {
       alert("incomplete data");

@@ -1,0 +1,23 @@
+.card{
+    width: 70%;
+    height: 70%;
+    margin-left: 65%;
+}
+.card-image{
+    width: 50%;
+    height: 50%;
+    margin-left: 25%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+
+.validating{
+    text-align: center;
+    position: absolute;
+}

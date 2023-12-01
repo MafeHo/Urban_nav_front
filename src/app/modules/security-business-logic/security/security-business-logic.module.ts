@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { RegisterClientComponent } from './register-client/register-client.component';
 import { ValidationHashUserComponent } from './validation-hash-user/validation-hash-user.component';
 
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module, RecaptchaSettings } from 'ng-recaptcha';
 @NgModule({
   declarations: [
     UserIdentificationComponent,
@@ -34,7 +35,14 @@ import { ValidationHashUserComponent } from './validation-hash-user/validation-h
     CommonModule,
     SecurityBusinessLogicRoutingModule,
     ReactiveFormsModule,
-    FormsModule 
+    FormsModule ,
+    RecaptchaV3Module
+  ],
+  providers: [
+    {
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: "6LcfPCIpAAAAAKc2QV1pqA6n206A3Vg7IBIZ1Xwn",
+    }
   ]
 })
 export class SecurityBusinessLogicModule { }

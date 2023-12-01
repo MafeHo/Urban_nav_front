@@ -10,6 +10,7 @@ import { RouteNotfoundComponent } from './public/errors/route-notfound/route-not
 import { ServerFailureComponent } from './public/errors/server-failure/server-failure.component';
 import { HomeComponent } from './public/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

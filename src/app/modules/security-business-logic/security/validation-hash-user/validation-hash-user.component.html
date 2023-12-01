@@ -1,2 +1,25 @@
-<h5 *ngIf="!validated">By validating</h5>
-<h1 *ngIf="validated">Validated</h1>
+<div class="row">
+    <div class="col s6">
+      <div *ngIf="validated" class="card">
+        <div class="card-image">
+          <img src="../../../../../assets/images/welcome.jpg">
+          <span class="card-title">Validated.</span>
+        </div>
+        <div class="card-content">
+          <p>You have successfully completed the email validation. <br>
+            You can now log in with the generated password and change it for more security. <br></p>
+        </div>
+        <div class="card-action">
+            <p class="">Thank you for choosing us</p>
+        </div>
+      </div>
+
+    <div *ngIf="!validated">
+        <h3>By validating...</h3>
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+    </div>
+
+    </div>
+  </div>
