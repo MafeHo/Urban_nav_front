@@ -20,7 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SidebarComponent,
     RouteNotfoundComponent,
     ServerFailureComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

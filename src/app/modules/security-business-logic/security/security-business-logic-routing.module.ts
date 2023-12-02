@@ -7,6 +7,7 @@ import { SignOutComponent } from './sign-out/sign-out.component';
 import { TwofaIdentificationComponent } from './twofa-identification/twofa-identification.component';
 import { RegisterClientComponent } from './register-client/register-client.component';
 import { ValidationHashUserComponent } from './validation-hash-user/validation-hash-user.component';
+import { RegisterDriverComponent } from './register-driver/register-driver.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: "sign-in-client",
     component: RegisterClientComponent
+  },
+  {
+    path: "sign-in-driver",
+    component: RegisterDriverComponent
   },
   {
     path: "validation-hash-user/:hash",

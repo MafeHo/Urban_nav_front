@@ -75,8 +75,24 @@ export class SecurityService {
     return this.http.post<UserModel>(`${this.urlBase}customer-public`,data);
   }
 
-  registerFile(data: any): Observable<{file: string}> { 
+  registerDriver(data: any): Observable<UserModel> { 
+    return this.http.post<UserModel>(`${this.urlBase}driver-public`,data);
+  }
+
+  uploadClient(data: any): Observable<{file: string}> { 
     return this.http.post<{file: string}>(`${this.urlBase}upload-file-passengers`,data);
+  }
+
+  uploadLicense(data: any): Observable<{file: string}> { 
+    return this.http.post<{file: string}>(`${this.urlBase}upload-file-license`,data);
+  }
+
+  uploadDriver(data: any): Observable<{file: string}> { 
+    return this.http.post<{file: string}>(`${this.urlBase}upload-file-drivers`,data);
+  }
+
+  uploadCar(data: any): Observable<{file: string}> { 
+    return this.http.post<{file: string}>(`${this.urlBase}upload-file-vehicles`,data);
   }
 
   validateHashUser(hash: string): Observable<boolean> {

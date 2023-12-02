@@ -65,7 +65,7 @@ constructor(
     const file: File = event.target.files[0];
     const form = new FormData();
     form.append('file', file);
-    this.securityService.registerFile(form).subscribe({
+    this.securityService.uploadClient(form).subscribe({
       next: (res) => {
         this.photoUrl = res.file;
       },
