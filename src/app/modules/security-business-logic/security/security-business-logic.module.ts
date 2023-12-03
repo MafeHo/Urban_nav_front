@@ -17,6 +17,7 @@ import { RegisterClientComponent } from './register-client/register-client.compo
 import { ValidationHashUserComponent } from './validation-hash-user/validation-hash-user.component';
 
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module, RecaptchaSettings } from 'ng-recaptcha';
+import { RegisterDriverComponent } from './register-driver/register-driver.component';
 @NgModule({
   declarations: [
     UserIdentificationComponent,
@@ -29,7 +30,8 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module, RecaptchaSettings } from 'ng-
     DeleteUserComponent,
     SignOutComponent,
     RegisterClientComponent,
-    ValidationHashUserComponent
+    ValidationHashUserComponent,
+    RegisterDriverComponent
   ],
   imports: [
     CommonModule,
