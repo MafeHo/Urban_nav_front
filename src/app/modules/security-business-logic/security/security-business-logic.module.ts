@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { RegisterClientComponent } from './register-client/register-client.component';
 import { ValidationHashUserComponent } from './validation-hash-user/validation-hash-user.component';
+import { RegisterInPointsComponent } from './register-in-points/register-in-points.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,17 @@ import { ValidationHashUserComponent } from './validation-hash-user/validation-h
     DeleteUserComponent,
     SignOutComponent,
     RegisterClientComponent,
-    ValidationHashUserComponent
+    ValidationHashUserComponent,
+    RegisterInPointsComponent
   ],
   imports: [
     CommonModule,
     SecurityBusinessLogicRoutingModule,
     ReactiveFormsModule,
     FormsModule 
+  ],
+  exports:[
+    RegisterInPointsComponent
   ]
 })
 export class SecurityBusinessLogicModule { }

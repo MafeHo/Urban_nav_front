@@ -4,6 +4,10 @@ import { UserModel } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { ConfigurationRoutesBackend } from 'src/config/configuration.routes.backend';
 import { UserValidateModel } from '../models/user.validate.model';
+import { RoleModel } from '../models/role.model';
+import { PointModel } from '../models/point.model';
+import { DriverModel } from '../models/driver.model';
+import { ClientModel } from '../models/client.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,17 +36,41 @@ export class SecurityService {
    * Srore user data
    * @param datas user data
    */
-  StoreIdentifiedUserData(datas: UserModel): boolean{
+  StoreIdentifiedUserData(datas: UserModel): void{
     let cadena = JSON.stringify(datas);
     let datasLS = localStorage.getItem('data-user');
     if (datasLS) {
-      return false;
+      localStorage.removeItem('data-user');
+      localStorage.setItem('data-user', cadena);
     } else {
       localStorage.setItem('data-user', cadena);
+    }
+  }
+
+  getUserRoleInfo(userId: string): Observable<DriverModel | ClientModel | UserModel> {
+    return this.http.get<DriverModel | ClientModel | UserModel>(`${this.urlBase}user/${userId}/info`);
+  }
+
+  StoreUserRoleInfo(datas: DriverModel | ClientModel | UserModel): boolean{
+    let cadena = JSON.stringify(datas);
+    let datasLS = localStorage.getItem('data-role');
+    if (datasLS) {
+      return false;
+    } else {
+      localStorage.setItem('data-role', cadena);
       return true;
     }
   }
 
+  GetRoleData(): UserModel | null {
+    let datasLS = localStorage.getItem('data-role');
+    if (datasLS) {
+      let datas = JSON.parse(datasLS);
+      return datas;
+    } else {
+      return null;
+    }
+  }
   /**
    * Get user data localstorage
    * @returns user data
@@ -142,6 +170,26 @@ export class SecurityService {
 
   }
 
+  identifyAnUserByRole(roleId: string): Observable<RoleModel>{
+      return this.http.get<RoleModel>(`${this.urlBase}role/${roleId}`);
+  }
+
+  getTokenFromLocalStorage():string {
+    let ls = localStorage.getItem('datas-session');
+    if(ls) {
+      let user : UserValidateModel = JSON.parse(ls);
+      return user.token!;
+    }
+    else {
+      return "";
+    }
+  }
+
+  getPoints(){ 
+    return this.http.get<PointModel[]>(`${this.urlBase}point`)
+  }
+
+  
 }
 
 

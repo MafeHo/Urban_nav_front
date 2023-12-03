@@ -9,7 +9,11 @@ import { SidebarComponent } from './public/master-page/sidebar/sidebar.component
 import { RouteNotfoundComponent } from './public/errors/route-notfound/route-notfound.component';
 import { ServerFailureComponent } from './public/errors/server-failure/server-failure.component';
 import { HomeComponent } from './public/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { DriverHomeComponent } from './public/driver-home/driver-home.component';
+import { AdminHomeComponent } from './public/admin-home/admin-home.component';
+import { SecurityBusinessLogicModule } from './modules/security-business-logic/security/security-business-logic.module';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,14 +23,19 @@ import { HttpClientModule } from '@angular/common/http';
     SidebarComponent,
     RouteNotfoundComponent,
     ServerFailureComponent,
-    HomeComponent
+    HomeComponent,
+    DriverHomeComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SecurityBusinessLogicModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

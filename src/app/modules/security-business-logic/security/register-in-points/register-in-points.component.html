@@ -1,0 +1,21 @@
+<div class = "moda" *ngIf="activeForm">
+    <form [formGroup]="fGroup">
+      <h6 class = "h6 deep-purple-text">Select the points near to you</h6>
+      <div class="input-field col s12">
+        <select multiple formControlName="point" id="pointsSelect">
+          <ng-container *ngFor="let option of options">
+            <option [value]="option">{{option}}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="show-errors" *ngIf="getFormGroup['point'].errors && (getFormGroup['point'].dirty || getFormGroup['point'].touched)">
+        <strong>This field is required in order to start</strong>
+      </div>
+      <div class="position-center">
+        <button class="btn waves-effect waves-light posi purple disabled" type="submit" name="action" id="parangutirimicuaro" (click) = "registerDrivers()">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+  
+    </form>
+</div>

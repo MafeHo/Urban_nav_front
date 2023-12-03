@@ -7,4 +7,13 @@ function initSidebar() {
       });
 }
 
+function initSelect() {
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      
+      var instances = M.FormSelect.init(elems, {});
+      console.log(instances);
+    });
+  }
+
 initSidebar(); 

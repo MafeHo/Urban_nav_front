@@ -1,0 +1,30 @@
+.moda {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+.h6 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+.position-end {
+    display: flex;
+    justify-content: end;
+}
+.position-center {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.show-errors{
+    color: red;
+    margin-bottom: 10px;
+}

@@ -2,11 +2,21 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './public/home/home.component';
 import { RouteNotfoundComponent } from './public/errors/route-notfound/route-notfound.component';
+import { DriverHomeComponent } from './public/driver-home/driver-home.component';
+import { AdminHomeComponent } from './public/admin-home/admin-home.component';
 
 const routes: Routes = [
   {
     path:"home",
     component: HomeComponent
+  },
+  {
+    path:"driver-home",
+    component: DriverHomeComponent
+  },
+  {
+    path:"admin-home",
+    component: AdminHomeComponent
   },
   {
     path: "",

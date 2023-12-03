@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ClientModel } from 'src/app/models/client.model';
+import { DriverModel } from 'src/app/models/driver.model';
+import { RoleModel } from 'src/app/models/role.model';
+import { UserModel } from 'src/app/models/user.model';
 import { UserValidateModel } from 'src/app/models/user.validate.model';
 import { SecurityService } from 'src/app/services/security.service';
 
@@ -49,7 +53,35 @@ export class TwofaIdentificationComponent {
           console.log(datas);
           if (datas.token != null && datas.token != undefined && datas.token != "") {
             this.securityService.StoreUserDataValidate(datas);
-            this.router.navigate([""]);
+            let user = localStorage.getItem("datas-session");
+            if (user) {
+              let userJson = JSON.parse(user); 
+              this.securityService.getUserRoleInfo(userJson.user._id).subscribe({
+                next: (roleDatas: DriverModel | ClientModel | UserModel) => {
+                  this.securityService.StoreUserRoleInfo(roleDatas);
+                },
+                error: (err) => {
+                  console.log(err);
+                }
+              })
+              let roleId = this.securityService.identifyAnUserByRole(userJson.user.roleId).subscribe({
+                next: (role:RoleModel) => {
+                  if(role.name == "Driver"){
+                    this.router.navigate(["/driver-home"]);
+                  }
+                  else if (role.name == "Admin"){
+                    this.router.navigate(["/admin-home"]);
+                  }      
+                  else {
+                    this.router.navigate([""]);
+                  }         
+                },
+                error: (err) => {
+                  console.log(err);
+                }
+              })
+              console.log(roleId);
+            }
           } else {
             alert("invalid code");
           }

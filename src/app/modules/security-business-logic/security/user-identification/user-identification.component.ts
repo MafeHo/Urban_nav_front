@@ -45,9 +45,7 @@ export class UserIdentificationComponent {
             alert("incorrect credentials or missing email validation");
           } else {
           console.log(datas);
-          if (this.securityService.StoreIdentifiedUserData(datas)) {
-            this.router.navigate(['/security/2fa']);
-          }
+          this.securityService.StoreIdentifiedUserData(datas)
           this.router.navigate(['/security/2fa']);
         }
         },
