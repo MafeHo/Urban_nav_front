@@ -115,6 +115,11 @@ export class SecurityService {
     this.UpdateUserBehavior(new UserValidateModel());
   }
 
+  RecoveryPasswordByUser(user: string): Observable<UserModel> {
+    return this.http.post<UserModel>(`${this.urlBase}recovery-password`,{
+      email: user
+    });
+  }
 
   /** user session administrate */
 
