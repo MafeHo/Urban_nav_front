@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './public/home/home.component';
 import { RouteNotfoundComponent } from './public/errors/route-notfound/route-notfound.component';
+import { ClientHomeComponent } from './public/client-home/client-home.component';
 
 const routes: Routes = [
   {
     path:"home",
     component: HomeComponent
+  },
+  {
+    path:"client-home",
+    component: ClientHomeComponent
   },
   {
     path: "",

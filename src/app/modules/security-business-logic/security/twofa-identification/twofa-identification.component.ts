@@ -44,6 +44,8 @@ export class TwofaIdentificationComponent {
       alert("you must enter the code")
     } else {
       let code2fa = this.getFormGroup["code"].value;
+      console.log(this.idUser);
+      
       this.securityService.ValidateCode2fa(this.idUser, code2fa).subscribe({
         next: (datas:UserValidateModel) => {
           console.log(datas);

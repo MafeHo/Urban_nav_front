@@ -167,6 +167,19 @@ export class SecurityService {
 
   }
 
+  getTokenFromLocalStorage():string {
+    let ls = localStorage.getItem('datas-session');
+    if(ls) {
+      let user : UserValidateModel = JSON.parse(ls);
+      return user.token!;
+    }
+    else {
+      return "";
+    }
+  }
+
+  
+
 }
 
 

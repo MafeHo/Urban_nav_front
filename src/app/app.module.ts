@@ -9,8 +9,10 @@ import { SidebarComponent } from './public/master-page/sidebar/sidebar.component
 import { RouteNotfoundComponent } from './public/errors/route-notfound/route-notfound.component';
 import { ServerFailureComponent } from './public/errors/server-failure/server-failure.component';
 import { HomeComponent } from './public/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ClientHomeComponent } from './public/client-home/client-home.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouteNotfoundComponent,
     ServerFailureComponent,
     HomeComponent,
+    ClientHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
