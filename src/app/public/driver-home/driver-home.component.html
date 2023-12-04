@@ -1,5 +1,24 @@
-<p>hola</p>
-
-<app-register-in-points ></app-register-in-points>
-
-<p>hola</p>
+<body class="mainBodyDriver">
+    <div class = "blocked" id="block" *ngIf="activeForm">
+        <app-register-in-points (newItemEvent)="changeActiveForm()"></app-register-in-points>
+    </div>
+    <div class="textContainer">
+        <h2 class="welcomeTextDriver">Welcome to UrbanNav</h2>
+        <h3 class="innerText">Thank you for chosing us. <br> We will make customers preffer our drivers, <br> help us to do it.</h3>
+    </div>
+    <div class="optionsDriver">
+        <div class="addPoints"  *ngIf="!isOnTrip">
+            <button class="waves-effect waves-light btn buttons" (click)="addPointsButton()"><i class="material-icons right icons">add_location</i>Add points</button>
+        </div>
+        <div class="availableButton" *ngIf="!isOnTrip">
+            <button (click)="putAvailable()" class="waves-effect waves-light btn buttons"  *ngIf="!isAvailable"><i class="material-icons right icons">directions_car</i>I'm available</button>
+            <button (click)="putAvailable()" class="waves-effect waves-light btn buttons" *ngIf="isAvailable"><i class="material-icons right icons">directions_car</i>I'm not available</button>
+        </div>
+        <div class="startTravel"  *ngIf="isOnTrip">
+            <button class="waves-effect waves-light btn buttons" (click)="startTrip()"><i class="material-icons right icons">check_circle</i>Start trip</button>
+        </div>
+        <div class="endTravel" *ngIf="isOnTrip">
+            <button class="waves-effect waves-light btn buttons" (click)="endTrip()"><i class="material-icons right icons">cancel</i>End trip</button>
+        </div>
+    </div>
+</body>

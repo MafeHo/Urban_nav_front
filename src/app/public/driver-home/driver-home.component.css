@@ -1,0 +1,118 @@
+.mainBodyDriver{
+    background-image: url("https://cdn.discordapp.com/attachments/1106088519023210537/1180337092987977768/wallpaperflare.com_wallpaper.jpg?ex=657d0d94&is=656a9894&hm=347cd20f7aa6807344cf418c8a9c88a67a0918ea33c26719bc230fc9e7432f2f&");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 900px;
+    width: 100%;
+    padding-top: 5px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#block {
+  width: 100vw;
+  height: 100vh;
+  position: fixed; /* O puedes usar "absolute" dependiendo de tus necesidades */
+  top: 0;
+  left: 0;
+  background: rgba(120,120,120,0.3); /* Añade un color de fondo para visualizar el div */
+  z-index: 999;
+}
+
+.welcomeTextDriver{
+    font-size: 40px;
+    color: white;
+    text-align: center;
+}
+
+.innerText{
+    margin-top: 60px;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+}
+
+.optionsDriver{
+    margin-top: 35%;
+    background: linear-gradient(to right, rgba(139, 92, 246, 0.5), rgba(255, 0, 255, 0.5));
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    @media(min-width: 1300px) {
+        margin-top: 10%;
+    }
+}
+
+.addPoints {
+    flex:1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.availableButton {
+    flex:1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.startTravel {
+    flex:1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.endTravel {
+    flex:1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.buttons {
+    width: 60%;
+    height: 60%;
+    font-size: 13px;
+    @media(min-width: 350px) {
+        font-size: 20px;
+    }
+}
+
+.icons{
+    font-size: 2rem;
+}
+
+@media all and (min-width: 800px) {
+    .welcomeTextDriver{
+        font-size: 50px;
+    }
+    .innerText{
+        font-size: 40px;
+    }
+    .optionsDriver{
+        margin-top: 20%;
+        flex-direction: row;
+    }
+    .buttons {
+        height: 40%;
+        font-size: 200%;
+    }
+    .icons{
+        font-size: 30px;
+    }
+}

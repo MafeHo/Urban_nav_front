@@ -15,6 +15,6 @@
 .leftMenu{
     position:relative;
     margin-top: -40px;
-    z-index: 999 !important;
+    z-index: 998 !important;
     width:50px;
 }

@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Component, ChangeDetectorRef  } from '@angular/core';
+import { Component,  Output, EventEmitter, Input} from '@angular/core';
 import { SecurityService } from 'src/app/services/security.service';
 import { Router } from '@angular/router';
 import { RoleModel } from 'src/app/models/role.model';
@@ -22,6 +22,13 @@ export class RegisterInPointsComponent {
   fGroup: FormGroup = new FormGroup({});
   instance: M.FormSelect | undefined;
   activeForm: boolean = true;
+
+  @Output() newItemEvent = new EventEmitter<boolean>();
+  
+    addNewItem() {
+      this.newItemEvent.emit(this.activeForm);
+    }
+
   constructor(
     private fb: FormBuilder,
     private securityService: SecurityService,
@@ -77,6 +84,7 @@ export class RegisterInPointsComponent {
             this.driverService.registerDriversInDB(driverJson._id, datas).pipe(take(1)).subscribe({
               next: (datas:any) => {
                 this.activeForm = false;
+                this.addNewItem();
               },
               error: (err:any) => {
                 alert("Couldn't register you in the points")
