@@ -26,11 +26,11 @@ export class DriverHomeComponent {
   activeForm: boolean = true;
   isOnTrip: boolean = false;
   isAvailable: boolean = false;
-  driverID: string = this.securityService.GetRoleData()?._id!;
+  driverID: string = "";
   
 
   ngOnInit(): void {
-    this.driverService.updateDriverStatus(this.driverID, false).subscribe({});
+    // this.driverService.updateDriverStatus(this.driverID, false).subscribe({});
     let ls = localStorage.getItem('datas-session');
       if (ls) {
         let lsJson = JSON.parse(ls);

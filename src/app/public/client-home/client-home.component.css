@@ -1,0 +1,203 @@
+/* CARDS STYLE */
+
+/* *,
+*::before,
+*::after { 
+  box-sizing: border-box;
+} */
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+  } 
+  
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-image: url('https://espasanews.com.ar//wp-content/uploads/2018/09/buildings-cars-city-169677-1080x675.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Esto asegura que haya espacio entre el header y el footer */
+    min-height: 100vh; /* Esto asegura que el body ocupe al menos el 100% de la altura visible */
+    position: relative;
+    width: 100%;
+   
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: inherit;
+    filter: blur(10px);
+    z-index: 0;
+    margin: 0;
+}
+
+header, footer {
+    z-index: 2;
+}
+
+  /* CARDS STYLE */
+  .btn {
+    line-height: 0.4; /* Puedes ajustar este valor según tus necesidades */
+  }
+  
+  button {
+    background: transparent;
+    border: none;
+    padding: 16px 32px;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    border-radius: 8px;
+    cursor: pointer;
+
+  }
+  
+  button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, violet, #9216F9, #16F9B8, #25DDDA, blue, indigo, violet, violet);
+    background-size: 800%;
+    border-radius: 0px;
+    filter: blur(12px);
+    animation: glowing 20s linear infinite;
+  }
+  
+ 
+   
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .cards__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    @media(min-width: 40rem) {
+      width: 50%;
+    }
+    @media(min-width: 56rem) {
+      width: 33.3333%;
+    }
+  }
+  
+  .card {
+    background-color: transparent;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50%;
+    margin-top: 10%;
+    max-width: 1000px; /* Ajusta el ancho máximo según tus necesidades */
+    height: 65vh; /* Establece la altura en 70vh */
+    width: 90vh; /* Ajusta el ancho automáticamente */
+    padding: 1rem;
+    overflow: hidden;
+   
+}
+  
+  .card__content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 1rem;
+    z-index: 5;
+  }
+  
+  .card__title {
+    color: white;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .card__text {
+    flex: 1 1 auto;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    color: white;
+  }
+
+  .container{
+   margin-bottom: 10%;
+   background-color: transparent;
+  }
+
+  .od{
+    color: white;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: transparent;
+  }
+
+  .selector{
+    color: white;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: transparent;
+  }
+
+  .selectOrigin{
+    margin-bottom: 10%;
+  }
+
+  .optionPlace{
+    color: black;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background-color: transparent;
+  }
+
+  .acceptCost{
+    width: 100%;
+    margin-top: 2%;
+    margin-left: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .cost-container{
+    color: white;
+    margin-left: 50%;
+    text-align: center;
+    width: 100%;
+    z-index: 0;
+  }
+
+  h3{
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+  }
+  

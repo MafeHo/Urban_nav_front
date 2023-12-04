@@ -10,5 +10,12 @@ export class UserModel{
     isActive?: boolean;
     commentByStatus?: string;
     roleId?: string;
-
+    model?: string;
+    plate?: string;
+    color?: string;
+    carBrand?: string;
+    passengerCapacity?: string;
+    photo?: string;
+    photoLicense?: string;
+    photoCar?: string;
 }

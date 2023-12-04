@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="row">
+      <form [formGroup]="fGroup" class="col s12">
+        <div>
+          <h4 class="formClient deep-purple-text">Register Driver</h4>
+        </div>
+        <div class="row">
+          <div class="input-field col s3">
+            <input formControlName="firstName" id="first_name" type="text" class="validate">
+            <label for="first_name">First Name</label>
+          </div>
+          <div class="input-field col s3">
+            <input formControlName="secondName" id="second_name" type="text" class="validate">
+            <label for="second_name">Second Name</label>
+          </div>
+          <div class="input-field col s3">
+            <input formControlName="firstUserName" id="first_username" type="text" class="validate">
+            <label for="first_username">First UserName</label>
+          </div>
+          <div class="input-field col s3">
+            <input formControlName="secondUserName" id="second_username" type="text" class="validate">
+            <label for="second_username">Second UserName</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s8">
+            <input formControlName="email" id="email" type="text" class="validate">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field col s4">
+            <input formControlName="phone" id="phone" type="text" class="validate">
+            <label for="phone">Phone</label>
+          </div>
+          <div class="file-field input-field col s6">
+            <div class="btn">
+              <span>License</span>
+              <!-- <input type="file"> -->
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" formControlName="photoLicense" id="photoLicense">
+              <input type="file" (change)="uploadPhotoLicense($event)" class="hidden"/>
+            </div>
+          </div>
+          <div class="file-field input-field col s6">
+            <div class="btn">
+              <span>Photo</span>
+              <!-- <input type="file"> -->
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" formControlName="photo" id="photo">
+              <input type="file" (change)="uploadPhoto($event)" class="hidden"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s3">
+                <input formControlName="carModel" id="car_model" type="text" class="validate">
+                <label for="car_model"> Car Model</label>
+              </div>
+              <div class="input-field col s3">
+                <input formControlName="carPlate" id="car_plate" type="text" class="validate">
+                <label for="car_plate">Car Plate</label>
+              </div>
+              <div class="input-field col s3">
+                <input formControlName="carColor" id="car_color" type="text" class="validate">
+                <label for="car_color">Car Color</label>
+              </div>
+              <div class="input-field col s3">
+                <input formControlName="carBrand" id="car_brand" type="text" class="validate">
+                <label for="car_brand">Car Brand</label>
+              </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="passengerCapacity" id="passenger_capacity" type="text" class="validate">
+                <label for="passenger_capacity">Passenger Capacity</label>
+            </div>
+            <div class="file-field input-field col s6">
+                <div class="btn">
+                  <span>Car Photo</span>
+                  <!-- <input type="file"> -->
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" formControlName="photoCar" id="photo_car">
+                  <input type="file" (change)="uploadPhotoCar($event)" class="hidden"/>
+                </div>
+              </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <button class="btn waves-effect waves-light" type="button" (click)="registerDriver()">Register
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

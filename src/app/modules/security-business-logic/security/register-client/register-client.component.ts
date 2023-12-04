@@ -14,6 +14,8 @@ export class RegisterClientComponent {
 fGroup: FormGroup = new FormGroup({ 
 });
 
+photoUrl: string = "";
+
 constructor(
   private fb: FormBuilder, 
   private securityService: SecurityService
@@ -46,19 +48,29 @@ constructor(
       Email: fields["email"].value,
       Phone: fields["phone"].value,
       EmergencyContact: fields["emergencyContact"].value,
-      Photo: fields["photo"].value,
+      Photo: this.photoUrl,
     }
     this.securityService.registerClient(data).subscribe({
       next: (res:UserModel) => {
         // mandar la alerta con socket.io
-        // this.securityService.sendSocket({
-        //   recipient: trip.clientId,
-        //   message: "No se encontraron conductores en el punto de origen"
-        // }, ConfigurationRoutesBackend.urlAccept)
         alert("User successfully registered");
       },
       error: (err) => {
         alert("Error registering user");
+      }
+    })
+  }
+
+  uploadPhoto(event: any){
+    const file: File = event.target.files[0];
+    const form = new FormData();
+    form.append('file', file);
+    this.securityService.uploadClient(form).subscribe({
+      next: (res) => {
+        this.photoUrl = res.file;
+      },
+      error: (err) => {
+        alert("Error");
       }
     })
   }

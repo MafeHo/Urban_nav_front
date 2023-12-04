@@ -17,6 +17,8 @@ import { RegisterClientComponent } from './register-client/register-client.compo
 import { ValidationHashUserComponent } from './validation-hash-user/validation-hash-user.component';
 import { RegisterInPointsComponent } from './register-in-points/register-in-points.component';
 
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module, RecaptchaSettings } from 'ng-recaptcha';
+import { RegisterDriverComponent } from './register-driver/register-driver.component';
 @NgModule({
   declarations: [
     UserIdentificationComponent,
@@ -30,13 +32,21 @@ import { RegisterInPointsComponent } from './register-in-points/register-in-poin
     SignOutComponent,
     RegisterClientComponent,
     ValidationHashUserComponent,
-    RegisterInPointsComponent
+    RegisterInPointsComponent,
+    RegisterDriverComponent
   ],
   imports: [
     CommonModule,
     SecurityBusinessLogicRoutingModule,
     ReactiveFormsModule,
-    FormsModule 
+    FormsModule ,
+    RecaptchaV3Module
+  ],
+  providers: [
+    {
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: "6LcfPCIpAAAAAKc2QV1pqA6n206A3Vg7IBIZ1Xwn",
+    }
   ],
   exports:[
     RegisterInPointsComponent

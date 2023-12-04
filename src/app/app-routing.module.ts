@@ -4,6 +4,7 @@ import { HomeComponent } from './public/home/home.component';
 import { RouteNotfoundComponent } from './public/errors/route-notfound/route-notfound.component';
 import { DriverHomeComponent } from './public/driver-home/driver-home.component';
 import { AdminHomeComponent } from './public/admin-home/admin-home.component';
+import { ClientHomeComponent } from './public/client-home/client-home.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path:"admin-home",
     component: AdminHomeComponent
+  },
+  {
+    path:"client-home",
+    component: ClientHomeComponent
   },
   {
     path: "",

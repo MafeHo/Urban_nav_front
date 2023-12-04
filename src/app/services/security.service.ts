@@ -103,6 +103,26 @@ export class SecurityService {
     return this.http.post<UserModel>(`${this.urlBase}customer-public`,data);
   }
 
+  registerDriver(data: any): Observable<UserModel> { 
+    return this.http.post<UserModel>(`${this.urlBase}driver-public`,data);
+  }
+
+  uploadClient(data: any): Observable<{file: string}> { 
+    return this.http.post<{file: string}>(`${this.urlBase}upload-file-passengers`,data);
+  }
+
+  uploadLicense(data: any): Observable<{file: string}> { 
+    return this.http.post<{file: string}>(`${this.urlBase}upload-file-license`,data);
+  }
+
+  uploadDriver(data: any): Observable<{file: string}> { 
+    return this.http.post<{file: string}>(`${this.urlBase}upload-file-drivers`,data);
+  }
+
+  uploadCar(data: any): Observable<{file: string}> { 
+    return this.http.post<{file: string}>(`${this.urlBase}upload-file-vehicles`,data);
+  }
+
   validateHashUser(hash: string): Observable<boolean> {
     return this.http.post<boolean>(`${this.urlBase}validate-hash-user`,{
       codeHash: hash
@@ -132,13 +152,20 @@ export class SecurityService {
   RemoveUserDataValidate() {
     let userDatas = localStorage.getItem('datas-session');
     let sessionDatas = localStorage.getItem('data-user');
-    if (userDatas && sessionDatas) {
+    let roleDatas = localStorage.getItem('data-role');
+    if (userDatas && sessionDatas && roleDatas) {
       localStorage.removeItem('datas-session');
       localStorage.removeItem('data-user');
+      localStorage.removeItem('data-role');
     } 
     this.UpdateUserBehavior(new UserValidateModel());
   }
 
+  RecoveryPasswordByUser(user: string): Observable<UserModel> {
+    return this.http.post<UserModel>(`${this.urlBase}recovery-password`,{
+      email: user
+    });
+  }
 
   /** user session administrate */
 
@@ -190,6 +217,10 @@ export class SecurityService {
   }
 
   
+  
+
+  
+
 }
 
 

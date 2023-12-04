@@ -13,6 +13,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DriverHomeComponent } from './public/driver-home/driver-home.component';
 import { AdminHomeComponent } from './public/admin-home/admin-home.component';
 import { SecurityBusinessLogicModule } from './modules/security-business-logic/security/security-business-logic.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ClientHomeComponent } from './public/client-home/client-home.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
@@ -25,16 +27,18 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ServerFailureComponent,
     HomeComponent,
     DriverHomeComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    ClientHomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     SecurityBusinessLogicModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

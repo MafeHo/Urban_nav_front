@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PointModel } from 'src/app/models/point.model';
 import { UserValidateModel } from 'src/app/models/user.validate.model';
+import { ParametersService } from 'src/app/services/parameters.service';
 import { SecurityService } from 'src/app/services/security.service';
+
+declare const initRecaptcha: any;
 
 @Component({
   selector: 'app-home',
@@ -10,21 +14,37 @@ import { SecurityService } from 'src/app/services/security.service';
 })
 export class HomeComponent {
 
+  list: PointModel[] = [];
+
   constructor(
     private securityService: SecurityService,
-    private router: Router
+    private router: Router,
+    private parametersService: ParametersService
   ) {
-    
   }
   activeSession: boolean = false;
 
   ngOnInit() {
+    this.loadPoints();
     this.sessionValidate();
+  }
+
+  // load all points from parameters service
+  loadPoints() {
+    this.parametersService.getPoints().subscribe({
+      next: (data:any) => {
+        this.list = data;
+        console.log(this.list)
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
   }
 
   sessionValidate() {
     this.securityService.GetSessionData().subscribe({
-      next: (datas:UserValidateModel) => {
+      next: (datas: UserValidateModel) => {
         if (datas.token != "") {
           this.activeSession = true;
           this.securityService.identifyAnUserByRole(datas.user!.roleId!).subscribe({
@@ -35,7 +55,7 @@ export class HomeComponent {
                 this.router.navigate(['/admin-home']);
               }
               else {
-                this.router.navigate(['/home']);
+                this.router.navigate(['/client-home']);
               }
             },
             error: (err:any) => {
@@ -46,7 +66,7 @@ export class HomeComponent {
           this.activeSession = false;
         }
       },
-      error: (err:any) => {
+      error: (err: any) => {
         console.log(err);
       }
     })
