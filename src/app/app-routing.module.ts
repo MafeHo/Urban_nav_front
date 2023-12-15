@@ -5,11 +5,26 @@ import { RouteNotfoundComponent } from './public/errors/route-notfound/route-not
 import { DriverHomeComponent } from './public/driver-home/driver-home.component';
 import { AdminHomeComponent } from './public/admin-home/admin-home.component';
 import { ClientHomeComponent } from './public/client-home/client-home.component';
+import { AboutusComponent } from './public/aboutus/aboutus.component';
+import { ContactusComponent } from './public/contactus/contactus.component';
+import { HelpComponent } from './public/help/help.component';
 
 const routes: Routes = [
   {
     path:"home",
     component: HomeComponent
+  },
+  {
+    path:"aboutus",
+    component: AboutusComponent
+  },
+  {
+    path:"contactus",
+    component: ContactusComponent
+  },
+  {
+    path:"help",
+    component: HelpComponent
   },
   {
     path:"driver-home",
