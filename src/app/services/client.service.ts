@@ -38,6 +38,14 @@ export class ClientService {
     return this.http.get<any>(`${this.urlBase2}trip/showInfoDriver/${idDriver}/${idClient}`)
   }
 
+  startTrip(idDriver: string, idTrip: string): Observable<any> {
+    return this.http.get<any>(`${this.urlBase2}trip/start-trip/${idDriver}/${idTrip}`)
+  }
+
+  panicButton(idTrip: string): Observable<any> {
+    return this.http.post<any>(`${this.urlBase2}trip/panic-button/${idTrip}`,{})
+  }
+
   createTrip(total: number, driverId: string, clientId: string, originPointId: string, destinyPointId: string): Observable<TripModel> {
     return this.http.post<TripModel>(`${this.urlBase2}trip`, {
       total: total,

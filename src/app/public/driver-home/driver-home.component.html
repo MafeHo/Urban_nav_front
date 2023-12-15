@@ -13,6 +13,12 @@
             <button class="waves-effect waves-light btn red" (click)="closeForm()"><i class="material-icons left">close</i>Rechazar</button>
         </div>
     </div>
+    <div class="newTrip" *ngIf="isOnTripBoolean">
+        <p class = "lines">{{message}}</p>
+        <div class = "divButtons2">
+            <button class="waves-effect waves-light btn" (click)="setOnTrip()"><i class="material-icons left">check</i>Aceptar</button>
+        </div>
+    </div>
     <div class="textContainer">
         <h2 class="welcomeTextDriver">Welcome to UrbanNav</h2>
         <h3 class="innerText">Thank you for chosing us. <br> We will make customers preffer our drivers, <br> help us to do it.</h3>

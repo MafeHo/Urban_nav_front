@@ -6,11 +6,22 @@
             <button class="waves-effect waves-light btn" (click)="closeForm()"><i class="material-icons left">close</i>Rechazar</button>
         </div>
     </div>
+    <div class="newTrip" *ngIf="buttonPanic">
+        <p class = "lines">{{infoDriver}}</p>
+        <div class = "divButtons2">
+            <button class="waves-effect waves-light btn" (click)="buttonPanicFunction()"><i class="material-icons left">check</i>Aceptar</button>
+        </div>
+    </div>
+    <div *ngIf="btnPanic" class="btnPanic">
+        <div class="card__title">Your trip is in progress</div>
+        <a class="btn-floating btn-large waves-effect waves-light red panic" (click)="help()">Panic</a>
+    </div>
+    
     <!-- CARDS -->
-    <div class="container-cards" *ngIf="!activeSession">
+    <div class="container-cards" *ngIf="!activeSession && buttonPanic23">
         <ul class="cards">
             <li class="cards__item">
-                <div class="card">
+                <div class="card" id="#form">
                     <div class="card__content">
                         <div class="card__title">Request a trip at this time with US</div>
                         <p class="card__text">Drive on the platform that has the largest number of active users.</p>

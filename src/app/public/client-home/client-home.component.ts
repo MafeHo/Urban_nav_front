@@ -22,6 +22,10 @@ export class ClientHomeComponent {
   infoDriver: string = '';
   infoDriver2: any;
   infoDriverBoolean: boolean = false;
+  buttonPanic: boolean = false;
+  buttonPanic23: boolean = true;
+  btnPanic: boolean = false;
+  panic: boolean = false;
 
   constructor(
     private socketWebService: SocketWebService,
@@ -34,6 +38,7 @@ export class ClientHomeComponent {
   }
   activeSession: boolean = false;
   ongoingPetition: boolean = false;
+  dataId: string = '';
 
   infoPetition: TripModel = {
     total: 0,
@@ -126,9 +131,46 @@ export class ClientHomeComponent {
     this.clientService.createTrip(this.infoPetition.total!, this.infoDriver2.driverId!, this.infoPetition.clientId!, this.infoPetition.originPointId!, this.infoPetition.destinyPointId!).subscribe({
       next: (data:any) => {
         console.log(data);
+        this.dataId = data._id;
         this.infoDriverBoolean = false;
+        this.auxiliar();
+        this.socketWebService.on("Accepttt", (message:any) => {
+          this.buttonPanic = true;
+          this.infoDriver = message.message;
+        })
       },
       error: (err: any) => { 
+        console.log(err);
+      }
+    });
+    
+  }
+
+  buttonPanicFunction(){
+    this.buttonPanic = false;
+    this.buttonPanic23 = false;
+    document.querySelector('#form')?.classList.add('hide');
+    this.btnPanic = true;
+  }
+
+  help(){
+    this.clientService.panicButton(this.dataId).subscribe({
+      next: (data:any) => {
+        console.log(data);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
+
+
+  auxiliar(){
+    this.clientService.startTrip(this.infoDriver2.driverId!, this.dataId).subscribe({
+      next: (datas: any) => {
+        console.log(datas);
+      },
+      error: (err: any) => {
         console.log(err);
       }
     });

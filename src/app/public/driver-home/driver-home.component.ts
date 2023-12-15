@@ -29,9 +29,12 @@ export class DriverHomeComponent {
   activeForm: boolean = true;
   newTrip: boolean = false;
   dataTrip: any;
-  isOnTrip: boolean = true;
+  message: string = '';
+  isOnTrip: boolean = false;
   isAvailable: boolean = false;
   driverID: string = "";
+  idtrip: string = "";
+  isOnTripBoolean: boolean = false;
   
 
   ngOnInit(): void {
@@ -89,10 +92,20 @@ export class DriverHomeComponent {
 
   setOnTrip() {
     this.isOnTrip = true;
+    this.isOnTripBoolean = false;
   }
 
   startTrip() {
-    this.driverService.startTrip("656804699189db3ecb33ab0e").subscribe({
+    console.log(this.idtrip);
+    this.driverService.startTrip(this.idtrip).subscribe({
+       next: (datas: any) => {
+         console.log(datas);
+       },
+       error: (err: any) => {
+         console.log(err);
+       }
+     })
+    this.driverService.start(this.dataTrip.userId).subscribe({
       next: (datas: any) => {
         console.log(datas);
       },
@@ -103,7 +116,7 @@ export class DriverHomeComponent {
   }
 
   endTrip() {
-    this.driverService.endTrip("656804699189db3ecb33ab0e").subscribe({
+    this.driverService.endTrip(this.idtrip).subscribe({
       next: (datas: any) => {
         console.log(datas);
       },
@@ -119,11 +132,16 @@ export class DriverHomeComponent {
 
   acceptTrip() {
     this.driverID = JSON.parse(localStorage.getItem('data-role')!)._id;
-    console.log(this.driverID);
-    console.log(this.dataTrip.userId);
+    // console.log(this.driverID);
+    // console.log(this.dataTrip.userId);
     this.clientService.showInfoDriver(this.driverID, this.dataTrip.userId).subscribe({
       next: (datas: any) => {
         this.newTrip = false;
+        this.socketWebService.on("Accept", (message:any) => {
+          this.isOnTripBoolean = true;
+          this.message = message.message;
+          this.idtrip = message.driverId;
+        })
       },
       error: (err: any) => {
         console.log(err);
