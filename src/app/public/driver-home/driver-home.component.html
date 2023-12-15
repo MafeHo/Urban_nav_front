@@ -2,6 +2,17 @@
     <div class = "blocked" id="block" *ngIf="activeForm">
         <app-register-in-points (newItemEvent)="changeActiveForm()"></app-register-in-points>
     </div>
+    <div class="newTrip" *ngIf="newTrip">
+        <p>Hay una nueva petición de viaje: <br> 
+        Origen: {{dataTrip.origin}} <br>
+        Destino: {{dataTrip.destination}} <br>
+        Nombre: {{dataTrip.client}} <br>
+        </p>
+        <div class = "divButtons">
+            <button class="waves-effect waves-light btn" (click)="acceptTrip()"><i class="material-icons left">airport_shuttle</i>Aceptar</button>
+            <button class="waves-effect waves-light btn red" (click)="closeForm()"><i class="material-icons left">close</i>Rechazar</button>
+        </div>
+    </div>
     <div class="textContainer">
         <h2 class="welcomeTextDriver">Welcome to UrbanNav</h2>
         <h3 class="innerText">Thank you for chosing us. <br> We will make customers preffer our drivers, <br> help us to do it.</h3>

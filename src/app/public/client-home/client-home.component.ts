@@ -6,6 +6,7 @@ import * as M from 'materialize-css';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientService } from 'src/app/services/client.service';
 import { TripModel } from 'src/app/models/trip.model';
+import { SocketWebService } from 'src/app/services/socketWeb.service';
 
 @Component({
   selector: 'app-client-home',
@@ -17,8 +18,13 @@ export class ClientHomeComponent {
 
   list: PointModel[] = [];
   instance: M.FormSelect | undefined;
+  userId = JSON.parse(localStorage.getItem('datas-session')!).user._id;
+  infoDriver: string = '';
+  infoDriver2: any;
+  infoDriverBoolean: boolean = false;
 
   constructor(
+    private socketWebService: SocketWebService,
     private securityService: SecurityService,
     private parametersService: ParametersService,
     private fb: FormBuilder,
@@ -43,6 +49,7 @@ export class ClientHomeComponent {
     setTimeout(() => {
       this.instance = M.FormSelect.init(document.querySelector('#pointsSelect') as Element, {});
     }, 1000);
+    this.socketWebService.connection(this.userId);
   }
 
   // load all points from parameters service
@@ -94,10 +101,41 @@ export class ClientHomeComponent {
 
   acceptPrice(){
     this.ongoingPetition = false;
+    this.infoPetition.clientId = JSON.parse(localStorage.getItem('data-role')!)._id;
+    console.log(this.infoPetition)
+    this.clientService.searchDrivers(this.infoPetition.originPointId!, this.infoPetition.destinyPointId!, this.infoPetition.total!, this.infoPetition.clientId!).subscribe({ 
+      next: (data:any) => {
+        this.socketWebService.on("Accept", (message:any) => {
+          this.infoDriver = message.message;
+          this.infoDriver2 = message;
+          this.infoDriverBoolean = true;
+        })
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+     });
   }
+
 
   declinePrice(){
     this.ongoingPetition = false;
+  }
+
+  acceptTrip(){
+    this.clientService.createTrip(this.infoPetition.total!, this.infoDriver2.driverId!, this.infoPetition.clientId!, this.infoPetition.originPointId!, this.infoPetition.destinyPointId!).subscribe({
+      next: (data:any) => {
+        console.log(data);
+        this.infoDriverBoolean = false;
+      },
+      error: (err: any) => { 
+        console.log(err);
+      }
+    });
+  }
+
+  closeForm(){
+    this.infoDriverBoolean = false;
   }
  
 }

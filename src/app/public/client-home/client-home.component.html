@@ -1,5 +1,11 @@
 <body class="">
-
+    <div class="newTrip" *ngIf="infoDriverBoolean">
+        <p class = "lines">{{infoDriver}}</p>
+        <div class = "divButtons">
+            <button class="waves-effect waves-light btn" (click)="acceptTrip()"><i class="material-icons left">airport_shuttle</i>Aceptar</button>
+            <button class="waves-effect waves-light btn" (click)="closeForm()"><i class="material-icons left">close</i>Rechazar</button>
+        </div>
+    </div>
     <!-- CARDS -->
     <div class="container-cards" *ngIf="!activeSession">
         <ul class="cards">
@@ -8,7 +14,6 @@
                     <div class="card__content">
                         <div class="card__title">Request a trip at this time with US</div>
                         <p class="card__text">Drive on the platform that has the largest number of active users.</p>
-        
                         <form [formGroup]="fGroup" class="container">
                             
                             <select formControlName="origin" class="browser-default selector selectOrigin">
