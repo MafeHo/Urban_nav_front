@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SocketWebService } from 'src/app/services/socketWeb.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,8 +9,17 @@ import { Router } from '@angular/router';
 })
 export class AdminHomeComponent {
 
-  constructor(private router: Router) {
+  userId = JSON.parse(localStorage.getItem('datas-session')!).user._id;
+
+  constructor(
+    private socketWebService: SocketWebService,
+    private router: Router
+  ) { 
     this.firstOpen = true;
+  }
+
+  ngOnInit() {
+    this.socketWebService.connection(this.userId);
   }
 
   firstOpen

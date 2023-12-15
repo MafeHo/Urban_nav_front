@@ -80,7 +80,56 @@ header, footer {
     animation: glowing 20s linear infinite;
   }
   
- 
+  .newTrip {
+    position: fixed;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 10%;
+    justify-self: center;
+    align-self: center;
+    z-index: 999;
+}
+
+.btnPanic{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.btnPanic2{
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.newTripButtons {
+  margin-top: 20px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.divButtons {
+  display: flex;
+   flex-direction: row;
+  justify-content: space-between;
+}
+
+.divButtons2 {
+  display: flex;
+   flex-direction: row;
+  justify-content: center;
+}
+
+.lines {
+  white-space: pre-line;
+  margin-bottom: 35px;
+}
    
   .cards {
     display: flex;

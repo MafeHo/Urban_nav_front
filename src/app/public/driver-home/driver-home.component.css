@@ -21,11 +21,31 @@ html, body {
 #block {
   width: 100vw;
   height: 100vh;
-  position: fixed; /* O puedes usar "absolute" dependiendo de tus necesidades */
+  position: fixed; 
   top: 0;
   left: 0;
-  background: rgba(120,120,120,0.3); /* Añade un color de fondo para visualizar el div */
+  background: rgba(120,120,120,0.3);
   z-index: 999;
+}
+
+.newTrip {
+    position: fixed;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    justify-self: center;
+    align-self: center;
+    z-index: 999;
+}
+
+.newTripButtons {
+    margin-top: 20px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
 }
 
 .welcomeTextDriver{
@@ -33,6 +53,18 @@ html, body {
     color: white;
     text-align: center;
 }
+
+.divButtons {
+   display: flex;
+    flex-direction: row;
+   justify-content: space-between;
+}
+
+.divButtons2 {
+    display: flex;
+     flex-direction: row;
+    justify-content: center;
+ }
 
 .innerText{
     margin-top: 60px;

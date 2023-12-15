@@ -37,6 +37,10 @@ export class DriverService {
     return this.http.patch<void>(`${this.urlBase}trip/${idTrip}/start`, {}, {})
   }
 
+  start(idDriver: string): Observable<any> {
+    return this.http.get<any>(`${this.urlBase}trip/start/${idDriver}`)
+  }
+
   endTrip(idTrip: string) {
     return this.http.patch(`${this.urlBase}trip/${idTrip}/end`, {}, {});
   }

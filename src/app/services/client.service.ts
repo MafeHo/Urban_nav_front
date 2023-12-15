@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConfigurationRoutesBackend } from 'src/config/configuration.routes.backend';
 import {TripPetitionModel } from '../models/tripPetition.model';
+import { driverInPointsModel } from '../models/driverInPoints.model';
+import { TripModel } from '../models/trip.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ import {TripPetitionModel } from '../models/tripPetition.model';
 export class ClientService {
 
   urlBase: string = ConfigurationRoutesBackend.urlSecurity;
+  urlBase2: string = ConfigurationRoutesBackend.urlRegister;
 
   constructor(
     private http: HttpClient
@@ -22,7 +25,36 @@ export class ClientService {
     });
   }
 
-  
+  searchDrivers(origin: String, destiny: String, price: Number, client: String): Observable<driverInPointsModel> {
+    return this.http.post<driverInPointsModel>(`${this.urlBase2}trip/searchdrivers`, {
+      total: price,
+      clientId: client,
+      originPointId: origin,
+      destinyPointId: destiny
+    });
+  }
 
+  showInfoDriver(idDriver: string, idClient: string): Observable<any> {
+    return this.http.get<any>(`${this.urlBase2}trip/showInfoDriver/${idDriver}/${idClient}`)
+  }
+
+  startTrip(idDriver: string, idTrip: string): Observable<any> {
+    return this.http.get<any>(`${this.urlBase2}trip/start-trip/${idDriver}/${idTrip}`)
+  }
+
+  panicButton(idTrip: string): Observable<any> {
+    return this.http.post<any>(`${this.urlBase2}trip/panic-button/${idTrip}`,{})
+  }
+
+  createTrip(total: number, driverId: string, clientId: string, originPointId: string, destinyPointId: string): Observable<TripModel> {
+    return this.http.post<TripModel>(`${this.urlBase2}trip`, {
+      total: total,
+      driverId: driverId,
+      clientId: clientId,
+      originPointId: originPointId,
+      destinyPointId: destinyPointId,
+      status: "ASSIGNED"
+    })
+  }
 
 }

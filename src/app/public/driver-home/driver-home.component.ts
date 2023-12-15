@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegisterInPointsComponent } from 'src/app/modules/security-business-logic/security/register-in-points/register-in-points.component';
 import { SecurityBusinessLogicModule } from 'src/app/modules/security-business-logic/security/security-business-logic.module';
+import { ClientService } from 'src/app/services/client.service';
 import { DriverService } from 'src/app/services/driver.service';
 import { SecurityService } from 'src/app/services/security.service';
+import { SocketWebService } from 'src/app/services/socketWeb.service';
 
 @Component({
   selector: 'app-driver-home',
@@ -14,19 +16,25 @@ export class DriverHomeComponent {
 
 
   constructor(
+    private clientService: ClientService,
+    private socketWebService: SocketWebService,
     private driverService: DriverService,
     private securityService: SecurityService,
     private router: Router
     
     ) { 
-
     }
   
   active: boolean = false;
   activeForm: boolean = true;
+  newTrip: boolean = false;
+  dataTrip: any;
+  message: string = '';
   isOnTrip: boolean = false;
   isAvailable: boolean = false;
   driverID: string = "";
+  idtrip: string = "";
+  isOnTripBoolean: boolean = false;
   
 
   ngOnInit(): void {
@@ -39,6 +47,14 @@ export class DriverHomeComponent {
             if (datas.name != "Driver") {
               this.router.navigate(['']);
             }
+            else {
+              this.socketWebService.connection(lsJson.user._id);
+              this.socketWebService.on("NewTrip", (newTrip:any) => {
+                this.newTrip = true;
+                this.dataTrip = newTrip;
+                console.log(this.dataTrip);
+              })
+            }
           },
           error: (err:any) => {
             console.log(err);
@@ -47,7 +63,6 @@ export class DriverHomeComponent {
       } else {
         this.router.navigate(['']);
       }
-    console.log(document.getElementById('#block'))
     document.getElementById('#block'),addEventListener('change', () => {
       
     })
@@ -77,10 +92,20 @@ export class DriverHomeComponent {
 
   setOnTrip() {
     this.isOnTrip = true;
+    this.isOnTripBoolean = false;
   }
 
   startTrip() {
-    this.driverService.startTrip("656804699189db3ecb33ab0e").subscribe({
+    console.log(this.idtrip);
+    this.driverService.startTrip(this.idtrip).subscribe({
+       next: (datas: any) => {
+         console.log(datas);
+       },
+       error: (err: any) => {
+         console.log(err);
+       }
+     })
+    this.driverService.start(this.dataTrip.userId).subscribe({
       next: (datas: any) => {
         console.log(datas);
       },
@@ -91,7 +116,7 @@ export class DriverHomeComponent {
   }
 
   endTrip() {
-    this.driverService.endTrip("656804699189db3ecb33ab0e").subscribe({
+    this.driverService.endTrip(this.idtrip).subscribe({
       next: (datas: any) => {
         console.log(datas);
       },
@@ -101,5 +126,26 @@ export class DriverHomeComponent {
     })
   }
 
+  closeForm() { 
+    this.newTrip = false;
+  }
 
+  acceptTrip() {
+    this.driverID = JSON.parse(localStorage.getItem('data-role')!)._id;
+    // console.log(this.driverID);
+    // console.log(this.dataTrip.userId);
+    this.clientService.showInfoDriver(this.driverID, this.dataTrip.userId).subscribe({
+      next: (datas: any) => {
+        this.newTrip = false;
+        this.socketWebService.on("Accept", (message:any) => {
+          this.isOnTripBoolean = true;
+          this.message = message.message;
+          this.idtrip = message.driverId;
+        })
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    })
+  }
 }

@@ -4,4 +4,5 @@ export class TripModel{
     clientId?: string;
     originPointId?: string;
     destinyPointId?: string;
+    status?: string;
 }

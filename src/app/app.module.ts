@@ -20,6 +20,9 @@ import { PointsComponent } from './modules/parameters/points/points/points.compo
 import { UsersComponent } from './modules/parameters/users/users/users.component';
 import { VariablesComponent } from './modules/parameters/variables/variables/variables.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ContactusComponent } from './public/contactus/contactus.component';
+import { HelpComponent } from './public/help/help.component';
+import { AboutusComponent } from './public/aboutus/aboutus.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ClientHomeComponent,
     PointsComponent,
     UsersComponent,
-    VariablesComponent
+    VariablesComponent,
+    AboutusComponent,
+    ContactusComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,

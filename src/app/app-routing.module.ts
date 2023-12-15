@@ -8,11 +8,26 @@ import { ClientHomeComponent } from './public/client-home/client-home.component'
 import { PointsComponent } from './modules/parameters/points/points/points.component';
 import { UsersComponent } from './modules/parameters/users/users/users.component';
 import { VariablesComponent } from './modules/parameters/variables/variables/variables.component';
+import { AboutusComponent } from './public/aboutus/aboutus.component';
+import { ContactusComponent } from './public/contactus/contactus.component';
+import { HelpComponent } from './public/help/help.component';
 
 const routes: Routes = [
   {
     path:"home",
     component: HomeComponent
+  },
+  {
+    path:"aboutus",
+    component: AboutusComponent
+  },
+  {
+    path:"contactus",
+    component: ContactusComponent
+  },
+  {
+    path:"help",
+    component: HelpComponent
   },
   {
     path:"driver-home",

@@ -7,14 +7,14 @@
 .brand-logo{
     width: 220px;
     padding: 0 1.5%;
-    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    //box-shadow: 0 0 10px rgba(0,0,0,.5);
     font-weight: bold;
-    margin-left: 50px;
+    //margin-left: 50px;
 }
 
 .leftMenu{
     position:relative;
     margin-top: -40px;
-    z-index: 998 !important;
+    z-index: 999 !important;
     width:50px;
 }
