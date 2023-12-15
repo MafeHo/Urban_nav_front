@@ -16,6 +16,9 @@ import { SecurityBusinessLogicModule } from './modules/security-business-logic/s
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClientHomeComponent } from './public/client-home/client-home.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ContactusComponent } from './public/contactus/contactus.component';
+import { HelpComponent } from './public/help/help.component';
+import { AboutusComponent } from './public/aboutus/aboutus.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     HomeComponent,
     DriverHomeComponent,
     AdminHomeComponent,
-    ClientHomeComponent
+    ClientHomeComponent,
+    AboutusComponent,
+    ContactusComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
