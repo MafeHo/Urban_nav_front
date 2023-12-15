@@ -1,0 +1,32 @@
+.variablesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.showVariables {
+    display: flex;
+    background-color: #fff; /* Color de fondo blanco */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 75%;
+    border-radius: 10px; /* Bordes circulares */
+    border: 1 solid #000; /* Línea negra */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+
+.editButton {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.edit {
+    margin: 0 50px;
+}

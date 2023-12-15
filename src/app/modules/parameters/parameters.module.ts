@@ -18,6 +18,11 @@ import { DeleteTripComponent } from './trip/delete-trip/delete-trip.component';
 import { CreateTripComponent } from './trip/create-trip/create-trip.component';
 import { ListTripComponent } from './trip/list-trip/list-trip.component';
 import { EditTripComponent } from './trip/edit-trip/edit-trip.component';
+import { DeletePointComponent } from './points/delete-point/delete-point.component';
+import { EditPointComponent } from './points/edit-point/edit-point.component';
+import { CreatePointComponent } from './points/create-point/create-point.component';
+import { EditVariablesComponent } from './variables/edit-variables/edit-variables.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -37,11 +42,17 @@ import { EditTripComponent } from './trip/edit-trip/edit-trip.component';
     DeleteTripComponent,
     CreateTripComponent,
     ListTripComponent,
-    EditTripComponent
+    EditTripComponent,
+    DeletePointComponent,
+    EditPointComponent,
+    CreatePointComponent,
+    EditVariablesComponent
   ],
   imports: [
     CommonModule,
-    ParametersRoutingModule
+    ParametersRoutingModule,
+    ReactiveFormsModule,
+    FormsModule ,
   ]
 })
 export class ParametersModule { }

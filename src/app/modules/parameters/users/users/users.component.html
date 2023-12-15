@@ -1,0 +1,34 @@
+<table>
+    <thead>
+      <tr>
+          <th>First name</th>
+          <th>Second Name</th>
+          <th>Last Name</th>
+          <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let r of registerList | paginate: { itemsPerPage: registerPerPage, currentPage: pag, totalItems: total }">
+        <td>{{r.firstNameUser}}</td>
+        <td>{{r.secondNameUser}}</td>
+        <td>{{r.LastNameUser}}</td>
+        <td>
+            <a (click)="activateUser(r._id!)" class="btn green">Activate</a>&nbsp;
+            <a (click)="deactivateUser(r._id!)" class="btn red">Deactivate</a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <pagination-controls
+                      (pageChange)="pag = $event; listRegisters()"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+          </pagination-controls>
+        </td>
+      </tr>
+    </tbody>
+</table>

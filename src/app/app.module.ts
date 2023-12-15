@@ -16,6 +16,10 @@ import { SecurityBusinessLogicModule } from './modules/security-business-logic/s
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClientHomeComponent } from './public/client-home/client-home.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { PointsComponent } from './modules/parameters/points/points/points.component';
+import { UsersComponent } from './modules/parameters/users/users/users.component';
+import { VariablesComponent } from './modules/parameters/variables/variables/variables.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -28,14 +32,18 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     HomeComponent,
     DriverHomeComponent,
     AdminHomeComponent,
-    ClientHomeComponent
+    ClientHomeComponent,
+    PointsComponent,
+    UsersComponent,
+    VariablesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SecurityBusinessLogicModule
+    SecurityBusinessLogicModule,
+    NgxPaginationModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

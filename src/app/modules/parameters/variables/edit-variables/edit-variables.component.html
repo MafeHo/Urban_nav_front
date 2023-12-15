@@ -1,0 +1,21 @@
+<div class="variablesContainer">
+    <div class="showVariables">
+        <div class="variablesTitle">
+            <h3>Variables</h3>
+        </div>
+        <div class="variablesList" id="form">
+            <form [formGroup]="fGroup">
+                <h3>Email: <br></h3>
+                <input placeholder="{{register.email}}" formControlName="email" type="email">
+                <h3>Sender email: <br></h3>
+                <input placeholder="{{register.sender_email}}" formControlName="sender_email" type="email">
+                <h3>Price per km: <br></h3>
+                <input placeholder="{{register.priceKm}}" formControlName="priceKm">
+            </form>
+        </div>
+        <div class="editButton">
+            <a routerLink="../../../admin-home" class="btn red edit">Cancel</a>&nbsp;
+            <a (click)="editVariables()" routerLink="../../../admin-home" class="btn green edit">Save</a>
+        </div>
+    </div>
+</div>

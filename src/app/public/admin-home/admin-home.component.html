@@ -1,1 +1,27 @@
-<p>admin-home works!</p>
+<body class="admin-page">
+    <div class="container-admin">
+        <div class="sidebar">
+            <div class="sidebar-content">
+                <ul>
+                    <li><button (click)="navigateTo('users')" class="bText">Users</button></li>
+                    <div class="line"></div>
+                    <li><button (click)="navigateTo('points')" class="bText">Points</button></li>
+                    <div class="line"></div>
+                    <li><button (click)="navigateTo('variables')" class="bText">Variables</button></li>
+                    <div class="line"></div>
+                    <li><button (click)="navigateTo('graphs')" class="bText">Stadistics info</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contentA">
+            <div *ngIf="firstOpen" class="componentA">
+                <h2>Welcome administrator!</h2>
+                <br>
+                <h3>In here you will be able to do several things related to your role, explore the sidebar to see what options are available for you.</h3>
+            </div>
+            <div *ngIf="!firstOpen" class="componentB">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</body>

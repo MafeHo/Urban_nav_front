@@ -5,6 +5,9 @@ import { RouteNotfoundComponent } from './public/errors/route-notfound/route-not
 import { DriverHomeComponent } from './public/driver-home/driver-home.component';
 import { AdminHomeComponent } from './public/admin-home/admin-home.component';
 import { ClientHomeComponent } from './public/client-home/client-home.component';
+import { PointsComponent } from './modules/parameters/points/points/points.component';
+import { UsersComponent } from './modules/parameters/users/users/users.component';
+import { VariablesComponent } from './modules/parameters/variables/variables/variables.component';
 
 const routes: Routes = [
   {
@@ -17,7 +20,12 @@ const routes: Routes = [
   },
   {
     path:"admin-home",
-    component: AdminHomeComponent
+    component: AdminHomeComponent,
+    children: [
+      { path: 'points', component: PointsComponent },
+      { path: 'users', component: UsersComponent },
+      { path: 'variables', component: VariablesComponent }
+    ]
   },
   {
     path:"client-home",
